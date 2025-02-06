@@ -94,18 +94,9 @@ var (
 				"Expand the tree on the left to browse the individual tutorial elements.",
 			widgetScreen,
 		},
-		"accordion": {"Accordion",
-			"Expand or collapse content panels.",
-			makeAccordionTab,
-		},
-		"activity": {"Activity",
-			"A spinner indicating activity used in buttons etc.",
-			makeActivityTab,
-		},
-		"button": {"Button",
-			"",
-			func(fyne.Window) fyne.CanvasObject { return makeNewTutorial("widgets/button.md") },
-		},
+		"accordion": loadDefinition("Accordion", "widgets/accordion.md"),
+		"activity":  loadDefinition("Activity", "widgets/activity.md"),
+		"button":    loadDefinition("Button", "widgets/button.md"),
 		"card": {"Card",
 			"Group content and widgets.",
 			makeCardTab,
@@ -182,6 +173,13 @@ var (
 		"widgets":     {"accordion", "activity", "button", "card", "entry", "form", "input", "progress", "text", "toolbar"},
 	}
 )
+
+func loadDefinition(title, file string) Tutorial {
+	return Tutorial{title,
+		"",
+		func(fyne.Window) fyne.CanvasObject { return makeNewTutorial(file) },
+	}
+}
 
 func makeNewTutorial(file string) fyne.CanvasObject {
 	tutorial := tutorials[file]

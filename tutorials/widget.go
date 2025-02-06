@@ -10,7 +10,6 @@ import (
 	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/container"
 	"fyne.io/fyne/v2/data/validation"
-	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/driver/mobile"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
@@ -30,73 +29,6 @@ Duis nisl orci, tincidunt ut leo quis, luctus vehicula diam. Sed velit justo, co
 Mauris erat urna, fermentum et quam rhoncus, fringilla consequat ante. Vivamus consectetur molestie odio, ac rutrum erat finibus a.
 Suspendisse id maximus felis. Sed mauris odio, mattis eget mi eu, consequat tempus purus.`
 )
-
-func makeAccordionTab(_ fyne.Window) fyne.CanvasObject {
-	link, err := url.Parse("https://fyne.io/")
-	if err != nil {
-		fyne.LogError("Could not parse URL", err)
-	}
-	ac := widget.NewAccordion(
-		widget.NewAccordionItem("A", widget.NewHyperlink("One", link)),
-		widget.NewAccordionItem("B", widget.NewLabel("Two")),
-		&widget.AccordionItem{
-			Title:  "C",
-			Detail: widget.NewLabel("Three"),
-		},
-	)
-	ac.MultiOpen = true
-	ac.Append(widget.NewAccordionItem("D", &widget.Entry{Text: "Four"}))
-	return ac
-}
-
-func makeActivityTab(win fyne.Window) fyne.CanvasObject {
-	a1 := widget.NewActivity()
-	a2 := widget.NewActivity()
-
-	var button *widget.Button
-	start := func() {
-		button.Disable()
-		a1.Start()
-		a1.Show()
-		a2.Start()
-		a2.Show()
-
-		time.AfterFunc(10*time.Second, func() {
-			fyne.Do(func() {
-				a1.Stop()
-				a1.Hide()
-				a2.Stop()
-				a2.Hide()
-
-				button.Enable()
-			})
-		})
-	}
-
-	button = widget.NewButton("Animate", start)
-	start()
-
-	return container.NewCenter(container.NewGridWithColumns(1,
-		container.NewCenter(container.NewVBox(
-			container.NewHBox(widget.NewLabel("Working..."), a1),
-			container.NewStack(button, a2))),
-		container.NewCenter(widget.NewButton("Show dialog", func() {
-			prop := canvas.NewRectangle(color.Transparent)
-			prop.SetMinSize(fyne.NewSize(50, 50))
-
-			a3 := widget.NewActivity()
-			d := dialog.NewCustomWithoutButtons("Please wait...", container.NewStack(prop, a3), win)
-			a3.Start()
-			d.Show()
-
-			time.AfterFunc(5*time.Second, func() {
-				fyne.Do(func() {
-					a3.Stop()
-					d.Hide()
-				})
-			})
-		}))))
-}
 
 func makeCardTab(_ fyne.Window) fyne.CanvasObject {
 	card1 := widget.NewCard("Book a table", "Which time suits?",
