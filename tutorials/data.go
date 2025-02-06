@@ -24,7 +24,7 @@ type Tutorial struct {
 	View         func(w fyne.Window) fyne.CanvasObject
 }
 
-type Tutorial2 struct {
+type GeneratedTutorial struct {
 	title string
 
 	content []string
