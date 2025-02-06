@@ -201,8 +201,9 @@ func makeNewTutorial(file string) fyne.CanvasObject {
 			continue
 		}
 
-		usage := widget.NewTextGridFromString(p)
+		usage := widget.NewTextGridFromString(p + "\n")
 		usage.ShowLineNumbers = true
+		usage.Scroll = fyne.ScrollHorizontalOnly
 		highlightTextGrid(usage)
 
 		codeID := (i - 1) / 2
