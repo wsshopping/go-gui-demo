@@ -14,7 +14,7 @@ import (
 )
 
 const template = `
-	"%s": Tutorial2{
+	"%s": GeneratedTutorial{
 		title: "%s",
 		content: %#v,
 
@@ -35,7 +35,7 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
-var tutorials = map[string]Tutorial2{`)
+var tutorials = map[string]GeneratedTutorial{`)
 
 	processDirectories(w)
 	io.WriteString(w, "}\n")

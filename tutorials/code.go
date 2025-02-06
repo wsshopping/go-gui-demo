@@ -27,6 +27,11 @@ func highlightTextGrid(grid *widget.TextGrid) {
 	}
 
 	row, col := 0, 0
+	tabWidth := grid.TabWidth
+	if tabWidth == 0 {
+		tabWidth = 4
+	}
+
 	textColor := styleColor(chroma.Background, style)
 	grid.SetRowStyle(0, &widget.CustomTextGridStyle{
 		FGColor: textColor})
@@ -41,6 +46,8 @@ func highlightTextGrid(grid *widget.TextGrid) {
 				FGColor: textColor})
 
 			continue
+		} else if tok.Value == "\t" {
+			col += tabWidth - 1
 		}
 
 		c := resolveColor(style.Get(tok.Type).Colour)
