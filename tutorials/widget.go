@@ -103,7 +103,7 @@ func makeTextTab(_ fyne.Window) fyne.CanvasObject {
 
 ## A Sub Heading
 
-![title](../../theme/icons/fyne.png)
+![title](data/assets/fyne.png)
 
 ---
 
@@ -136,6 +136,9 @@ This styled row should also wrap as expected, but only *when required*.
 				seg.Style.Alignment = align
 			}
 			if seg, ok := rich.Segments[i].(*widget.HyperlinkSegment); ok {
+				seg.Alignment = align
+			}
+			if seg, ok := rich.Segments[i].(*widget.ImageSegment); ok {
 				seg.Alignment = align
 			}
 		}
