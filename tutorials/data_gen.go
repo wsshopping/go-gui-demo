@@ -32,7 +32,7 @@ var tutorials = map[string]GeneratedTutorial{
 
 	"canvas/gradient.md": GeneratedTutorial{
 		title:   "Canvas : Gradient",
-		content: []string{"A gradient canvas object fills an area with a gradient from one color to another.\nThere are two types of gradient, LinearGradient and RadialGradient.\n\n## LinearGradient\n\nThe simplest linear gradient is created using the `NewHorizontalGradient` or `NewVerticalGradient` constructor function,\npassing in the start and end colors it should use to draw.", "grad := canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff})", "### Specifying an angle\n\nYou can specify the angle of a gradient in 45 degree increments to control the angle manually.", "grad := canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff})\ngrad.Angle = 225", "## RadialGradient\n\nA radial gradient draws the colour gradient from the center out to the perimiters with a circular draw.\nFor example:", "grad := canvas.NewRadialGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0x80, 0xff})", ""},
+		content: []string{"A gradient canvas object fills an area with a gradient from one color to another.\nThere are two types of gradient, LinearGradient and RadialGradient.\n\n## LinearGradient\n\nThe simplest linear gradient is created using the `NewHorizontalGradient` or `NewVerticalGradient` constructor function,\npassing in the start and end colors it should use to draw.", "grad := canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff})", "### Specifying an angle\n\nYou can specify the angle of a gradient in 45 degree increments to control the angle manually.", "grad := canvas.NewLinearGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff}, 45)", "## RadialGradient\n\nA radial gradient draws the colour gradient from the center out to the perimiters with a circular draw.\nFor example:", "grad := canvas.NewRadialGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0x80, 0xff})", ""},
 
 		code: []func() fyne.CanvasObject{
 			func() fyne.CanvasObject {
@@ -40,8 +40,7 @@ var tutorials = map[string]GeneratedTutorial{
 				return grad
 			},
 			func() fyne.CanvasObject {
-				grad := canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff})
-				grad.Angle = 225
+				grad := canvas.NewLinearGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff}, 45)
 				return grad
 			},
 			func() fyne.CanvasObject {

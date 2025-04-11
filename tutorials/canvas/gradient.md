@@ -17,8 +17,7 @@ grad := canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{
 You can specify the angle of a gradient in 45 degree increments to control the angle manually.
 
 ```
-grad := canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff})
-grad.Angle = 135
+grad := canvas.NewLinearGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff}, 45)
 ```
 
 ## RadialGradient
