@@ -2,7 +2,6 @@ package tutorials
 
 import (
 	"image/color"
-	"time"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/canvas"
@@ -20,23 +19,6 @@ func rgbGradient(x, y, w, h int) color.Color {
 
 // canvasScreen loads a graphics example panel for the demo app
 func canvasScreen(_ fyne.Window) fyne.CanvasObject {
-	gradient := canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff})
-	ticker := time.NewTicker(time.Second)
-
-	OnChangeFuncs = append(OnChangeFuncs, ticker.Stop)
-
-	go func() {
-		for range ticker.C {
-			fyne.Do(func() {
-				gradient.Angle += 45
-				if gradient.Angle >= 360 {
-					gradient.Angle -= 360
-				}
-				canvas.Refresh(gradient)
-			})
-		}
-	}()
-
 	return container.NewGridWrap(fyne.NewSize(90, 90),
 		canvas.NewImageFromResource(data.FyneLogo),
 		&canvas.Rectangle{FillColor: color.NRGBA{0x80, 0, 0, 0xff},
@@ -53,7 +35,7 @@ func canvasScreen(_ fyne.Window) fyne.CanvasObject {
 			StrokeWidth: 2},
 		canvas.NewText("Text", color.NRGBA{0, 0x80, 0, 0xff}),
 		canvas.NewRasterWithPixels(rgbGradient),
-		gradient,
+		canvas.NewHorizontalGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0, 0xff}),
 		canvas.NewRadialGradient(color.NRGBA{0x80, 0, 0, 0xff}, color.NRGBA{0, 0x80, 0x80, 0xff}),
 	)
 }
