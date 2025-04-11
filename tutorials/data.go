@@ -3,6 +3,8 @@
 package tutorials
 
 import (
+	"image/color"
+
 	"github.com/alecthomas/chroma/v2"
 	"github.com/alecthomas/chroma/v2/styles"
 
@@ -39,6 +41,13 @@ var (
 			"See the canvas capabilities.",
 			canvasScreen,
 		},
+		"canvastext": loadDefinition("Text", "canvas/text.md"),
+		"line":       loadDefinition("Line", "canvas/line.md"),
+		"rectangle":  loadDefinition("Rectangle", "canvas/rectangle.md"),
+		"circle":     loadDefinition("Circle", "canvas/circle.md"),
+		"image":      loadDefinition("Image", "canvas/image.md"),
+		"raster":     loadDefinition("Raster", "canvas/raster.md"),
+		"gradient":   loadDefinition("Gradient", "canvas/gradient.md"),
 		"animations": {"Animations",
 			"See how to animate components.",
 			makeAnimationScreen,
@@ -168,6 +177,7 @@ var (
 	// TutorialIndex  defines how our tutorials should be laid out in the index tree
 	TutorialIndex = map[string][]string{
 		"":            {"welcome", "canvas", "animations", "icons", "widgets", "collections", "containers", "dialogs", "windows", "binding", "advanced"},
+		"canvas":      {"canvastext", "line", "rectangle", "circle", "image", "raster", "gradient"},
 		"collections": {"list", "table", "tree", "gridwrap"},
 		"containers":  {"apptabs", "border", "box", "center", "doctabs", "grid", "scroll", "split", "innerwindow"},
 		"widgets":     {"accordion", "activity", "button", "card", "entry", "form", "input", "progress", "text", "toolbar"},
@@ -220,6 +230,8 @@ func makeNewTutorial(file string) fyne.CanvasObject {
 
 		style := styles.Get("solarized-dark")
 		bg := styleBackgroundColor(chroma.Background, style)
+		prop := canvas.NewRectangle(color.Transparent)
+		prop.SetMinSize(fyne.NewSize(18, 18)) // big enough for canvas elements to show, but smaller than most widgets
 
 		details.Add(container.NewPadded(container.NewPadded(
 			container.NewStack(
@@ -228,7 +240,7 @@ func makeNewTutorial(file string) fyne.CanvasObject {
 					container.NewHBox(layout.NewSpacer(), container.NewVBox(
 						tools)))))))
 		details.Add(widget.NewRichTextFromMarkdown("*Preview:*"))
-		details.Add(container.NewPadded(container.NewHBox(preview)))
+		details.Add(container.NewPadded(container.NewStack(prop, preview)))
 	}
 
 	return container.NewBorder(top, nil, nil, nil, container.NewScroll(details))

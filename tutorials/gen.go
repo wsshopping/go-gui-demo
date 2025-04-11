@@ -30,9 +30,12 @@ func main() {
 		`package tutorials
 
 import (
+	"image"
+	"image/color"
 	"time"
 
 	"fyne.io/fyne/v2"
+	"fyne.io/fyne/v2/canvas"
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 )
@@ -51,15 +54,18 @@ var tutorials = map[string]GeneratedTutorial{`)
 }
 
 func processDirectories(w io.Writer) {
-	dir := "widgets"
-	files, err := os.ReadDir(dir)
-	if err != nil {
-		fyne.LogError("Failed to list directory", err)
-		return
-	}
+	dirs := []string{"canvas", "widgets"}
 
-	for _, file := range files {
-		processFile(filepath.Join(dir, file.Name()), w)
+	for _, dir := range dirs {
+		files, err := os.ReadDir(dir)
+		if err != nil {
+			fyne.LogError("Failed to list directory", err)
+			return
+		}
+
+		for _, file := range files {
+			processFile(filepath.Join(dir, file.Name()), w)
+		}
 	}
 }
 
