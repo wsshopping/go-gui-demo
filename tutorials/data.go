@@ -176,7 +176,7 @@ var (
 
 	// TutorialIndex  defines how our tutorials should be laid out in the index tree
 	TutorialIndex = map[string][]string{
-		"":            {"welcome", "canvas", "animations", "icons", "widgets", "collections", "containers", "dialogs", "windows", "binding", "advanced"},
+		"":            {"welcome", "canvas", "widgets", "collections", "containers", "animations", "dialogs", "windows", "icons", "binding", "advanced"},
 		"canvas":      {"canvastext", "line", "rectangle", "circle", "image", "raster", "gradient"},
 		"collections": {"list", "table", "tree", "gridwrap"},
 		"containers":  {"apptabs", "border", "box", "center", "doctabs", "grid", "scroll", "split", "innerwindow"},
