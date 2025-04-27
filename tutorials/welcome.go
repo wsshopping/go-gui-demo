@@ -12,7 +12,7 @@ import (
 	"fyne.io/fyne/v2/theme"
 	"fyne.io/fyne/v2/widget"
 
-	"github.com/fyne-io/demo/data"
+	"fyne.io/demo/data"
 )
 
 func parseURL(urlStr string) *url.URL {
