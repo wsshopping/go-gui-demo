@@ -1,4 +1,4 @@
-module github.com/fyne-io/demo
+module fyne.io/demo
 
 go 1.19
 
