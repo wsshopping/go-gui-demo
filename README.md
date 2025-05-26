@@ -14,3 +14,5 @@ strip --strip-unneeded main
 
 # 步骤 3：UPX 压缩
 upx --best --lzma main
+
+https://github.com/upx/upx/releases/tag/v5.0.1
